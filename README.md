@@ -17,7 +17,6 @@
 ## Test locally
 
 * Clone/fork project
-
 * In root folder, open terminal and run:
   * ``dotnet run``
   * Check http://localhost:5010/weatherforecast
