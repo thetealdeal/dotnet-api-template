@@ -15,7 +15,9 @@
 [TODO] Doc/setup etc.
 
 ## Test locally
+
 * Clone/fork project
+
 * In root folder, open terminal and run:
   * ``dotnet run``
   * Check http://localhost:5010/weatherforecast
@@ -26,3 +28,7 @@ To build a Docker-image, in root folder, open terminal and run:
 To run image, open terminal and run:
 * ``docker run --name dotnet-api-template -dp 5010:5010 <YOUR_DOCKER_USERNAME>/dotnet-api-template``
 * Check http://localhost:5010/weatherforecast
+
+## CI/CD with GitHub Actions
+
+[TODO] Doc/setup etc.
