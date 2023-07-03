@@ -6,6 +6,7 @@
   * This simple API is created using ``dotnet new webapi``
 * Dockerize it
 * CI/CD pipeline (GitHub Actions) to build image and upload to Docker Hub
+  * Workflow created using GitHub Action's default template for creating a Docker container, then expanded
 
 ## Prerequisites
 
