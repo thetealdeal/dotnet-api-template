@@ -31,4 +31,14 @@ To run image, open terminal and run:
 
 ## CI/CD with GitHub Actions
 
-[TODO] Doc/setup etc.
+The workflow is defined in [docker-image.yml](https://github.com/rezabmirzaei/dotnet-api-template/blob/main/.github/workflows/docker-image.yml). It will run automatically on every push to this branch.
+
+### Setup
+
+In you Docker Hub account, create an [access token](https://docs.docker.com/docker-hub/access-tokens/). Remember the value! You will need it when configuring the GitHub Actions workflow.
+
+In GitHub, in the repository for your API, under _Settings > Secrets and variables > Actions_; create two new variables:
+* ``DOCKERHUB_USERNAME`` containing your DOcker Hub username
+* ``DOCKERHUB_TOKEN`` containing the access token you created for you Docker Hub account
+
+These values will be used in the automated workflow to build and push your image to ``<DOCKERHUB_USERNAME>/dotnet-api-tamplate:latest`` 
