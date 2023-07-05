@@ -39,7 +39,7 @@ In GitHub, in the repository for your API, under _Settings > Secrets and variabl
 
 These values will be used in the automated workflow to build and push your image to ``<DOCKERHUB_USERNAME>/dotnet-api-tamplate:latest``
 
-### Test build/push to Docker Hub process
+### Test build/push to Docker Hub
 
 * Make a change in the API and push the changes to your repository.
 * In GitHub, in your repository for this project, monitor the build process under the _Actions_ tab.
