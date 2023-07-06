@@ -8,7 +8,7 @@ public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
     {
-        "PEWFreezingLOL", "PEWBracingLOL", "PEWChillyLOL", "PEWCoolLOL", "PEWMildLOL", "PEWWarmLOL", "PEWBalmyLOL", "PEWHotLOL", "PEWSwelteringLOL", "PEWScorchingLOL"
+        "PEWFreezingLOL2", "PEWBracingLOL3", "PEWChillyLOL4", "PEWCoolLOL5", "PEWMildLOL6", "PEWWarmLOL7", "PEWBalmyLOL8", "PEWHotLOL9", "PEWSwelteringLOL9", "PEWScorchingLOL10"
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
