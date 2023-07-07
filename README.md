@@ -20,14 +20,23 @@ Got the base code:
   - took the bicep files from "ci-cd-iac-bicep", and ajusted some info (I did in the old files, not this one)
   - added all the local info to terminal:
   ``$ENV:ARM_CLIENT_ID = "668ccd6f-6d36-426e-b1a7-c158ac48d596"``
+
   ``$ENV:ARM_CLIENT_SECRET = "****************************************"``
+
   ``$ENV:ARM_SUBSCRIPTION_ID = "c8866fbf-71d6-4235-91cd-201c29ec1b0e"``
+
   ``$ENV:ARM_TENANT_ID = "a1d168fb-cc80-4836-8881-3ab4a0cd4630"``
+
   ``$env:AZURE_REGION = "NorthEurope"``
+
   ``$env:RG_NAME = "rg-bicep-webapp-mark"``
+
   ``$env:DOCKER_USR = "markenden"``
+
   ``$env:DOCKER_IMAGE = "dotnet-api-template"``
+
   - "cd infrastructure" to relevent map -> ran the command to build the Rg, app & app service plan (first as what-if to be sure)
+  
    ``az deployment sub what-if -l ${env:AZURE_REGION} --name=rg-bicep-webapp-mark --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
 
 #### Add a webhook to docker
