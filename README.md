@@ -1,46 +1,46 @@
-# .NET API Template with GitHub Actions workflow
+# .NET API Template with GitHub, Docker & Azure CI/CD & IaC
 
-* A simple .NET API
-  * Created using ``dotnet new webapi``
-  * [Dockerized](https://github.com/rezabmirzaei/dotnet-api-template/blob/main/Dockerfile)
-* CI/CD pipeline (GitHub Actions) to build image and upload to Docker Hub
-  * Workflow created using GitHub Action's default template for creating a Docker container, then expanded
+### Here are the steps I took to achieve my results
+Got the base code:
+     - forked reza's dotnet-api-template too my github
+     - Cloned it with visual studio code
+     - ran the code localy to check if everything works ``dotnet run``
 
-## Prerequisites
+#### Build, run, push to docker
+     - build the app in docker via terminal, using ``docker build -t markenden/dotnet-api-template .``
+     - ran the docker localy via terminal, using ``docker run --name dotnet-api-template -dp 5010:80 <markenden/dotnet-api-template``
+     - pushed the app to hub.docker
 
-* [.NET SDK](https://dotnet.microsoft.com/en-us/download) (.NET 7.0 used here as of July 2023)
-* [Docker Desktop](https://docs.docker.com/desktop/install/windows-install/) and a [Docker Hub](https://hub.docker.com/) account
+#### Made the docker/github CI/CD
+     - made access token in docker
+     - added secrets for username and docker access token in github repository
+     - updated/pushed my repository to see if it worked, had to activate actions in github, since it blocked it at first. Worked fine afterwards.
 
-## Test locally
+#### Added the bicep files, made the resource group, app service & app service plan
+      - took the bicep files from "ci-cd-iac-bicep", and ajusted some info (I did in the old files, not this one)
+      - added all the local info to terminal:
+        ``$ENV:ARM_CLIENT_ID = "668ccd6f-6d36-426e-b1a7-c158ac48d596"``
+        ``$ENV:ARM_CLIENT_SECRET = "****************************************"``
+        ``$ENV:ARM_SUBSCRIPTION_ID = "c8866fbf-71d6-4235-91cd-201c29ec1b0e"``
+        ``$ENV:ARM_TENANT_ID = "a1d168fb-cc80-4836-8881-3ab4a0cd4630"``
+        ``$env:AZURE_REGION = "NorthEurope"``
+        ``$env:RG_NAME = "rg-bicep-webapp-mark"``
+        ``$env:DOCKER_USR = "markenden"``
+        ``$env:DOCKER_IMAGE = "dotnet-api-template"``
+      - "cd infrastructure" to relevent map -> ran the command to build the Rg, app & app service plan (first as what-if to be sure)
+        ``az deployment sub what-if -l ${env:AZURE_REGION} --name=rg-bicep-webapp-mark --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
 
-* Clone/fork project
-* In root folder, open terminal and run:
-  * ``dotnet run``
-  * Check http://localhost:5010/weatherforecast
+#### Add a webhook to docker
+     - Asked Reza to make a webhook url for me since I did not have the privilege for that, and added it to the docker repo
 
-To build a Docker-image, in root folder, open terminal and run:
-* ``docker build -t <YOUR_DOCKER_USERNAME>/dotnet-api-template .``
+#### Cleaned up a little
+     - trew away the old bicep files
+     - made this readme
 
-To run image, open terminal and run:
-* ``docker run --name dotnet-api-template -dp 5010:80 <YOUR_DOCKER_USERNAME>/dotnet-api-template``
-* Check http://localhost:5010/weatherforecast
+#### Screenshots are added in the screenshots map in the .zip that I'll upload to Noroff Accelerate
 
-## CI/CD with GitHub Actions
+#### final thoughts
+Looking back and seeing it all written out it seems so simple, yet it took me a couple of tries and experimentations to get it right :D
+At first I was overwhelmed with all the possibilities and uncertainties but it ended up being more straight foreward than I anticipated, nice.
 
-The workflow is defined in [docker-image.yml](https://github.com/rezabmirzaei/dotnet-api-template/blob/main/.github/workflows/docker-image.yml). It will run automatically on every push to this branch.
-
-### Setup
-
-In you Docker Hub account, create an [access token](https://docs.docker.com/docker-hub/access-tokens/). Remember the value! You will need it when configuring the GitHub Actions workflow.
-
-In GitHub, in the repository for your API, under _Settings > Secrets and variables > Actions_; create two new variables:
-* ``DOCKERHUB_USERNAME`` containing your Docker Hub username
-* ``DOCKERHUB_TOKEN`` containing the access token you created for you Docker Hub account
-
-These values will be used in the automated workflow to build and push your image to ``<DOCKERHUB_USERNAME>/dotnet-api-tamplate:latest``
-
-### Test build/push to Docker Hub
-
-* Make a change in the API and push the changes to your repository.
-* In GitHub, in your repository for this project, monitor the build process under the _Actions_ tab.
-* When done, check your Docker Hub account under _Repositories_ and you should see a new image of this API.
+Thank you again and have a nice day!
