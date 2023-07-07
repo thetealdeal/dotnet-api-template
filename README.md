@@ -19,6 +19,7 @@ Got the base code:
 #### Added the bicep files, made the resource group, app service & app service plan
   - took the bicep files from "ci-cd-iac-bicep", and ajusted some info (I did in the old files, not this one)
   - added all the local info to terminal:
+  
   ``$ENV:ARM_CLIENT_ID = "668ccd6f-6d36-426e-b1a7-c158ac48d596"``
 
   ``$ENV:ARM_CLIENT_SECRET = "****************************************"``
@@ -36,7 +37,7 @@ Got the base code:
   ``$env:DOCKER_IMAGE = "dotnet-api-template"``
 
   - "cd infrastructure" to relevent map -> ran the command to build the Rg, app & app service plan (first as what-if to be sure)
-  
+
    ``az deployment sub what-if -l ${env:AZURE_REGION} --name=rg-bicep-webapp-mark --template-file main.bicep --parameters rgName=${env:RG_NAME} location=${env:AZURE_REGION} dockerHubUser=${env:DOCKER_USR} dockerImage=${env:DOCKER_IMAGE}``
 
 #### Add a webhook to docker
